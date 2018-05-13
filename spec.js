@@ -33,4 +33,17 @@ describe('Checkout', () => {
         expect(Object.keys(checkout1.basket)[0]).to.equal('A');
         expect(checkout1.basket.A).to.equal(1);
     });
+    it('Adds multiple items to the basket', () => {
+        let checkout1 = new Checkout(prices);
+        checkout1.addItem('A');
+        checkout1.addItem('B');
+        checkout1.addItem('C');
+        checkout1.addItem('D');
+        expect(checkout1.subtotal).to.equal(122);
+        expect(Object.keys(checkout1.basket).length).to.equal(4);
+        expect(checkout1.basket.A).to.equal(1);
+        expect(checkout1.basket.B).to.equal(1);
+        expect(checkout1.basket.C).to.equal(1);
+        expect(checkout1.basket.D).to.equal(1);
+    });
 });
