@@ -25,4 +25,12 @@ describe('Checkout', () => {
         let checkout1 = new Checkout();
         expect(checkout1).to.be.an('object');
     });
+    it('Adds one item to the basket', () => {
+        let checkout1 = new Checkout(prices);
+        checkout1.addItem('A');
+        expect(checkout1.subtotal).to.equal(50);
+        expect(Object.keys(checkout1.basket).length).to.equal(1);
+        expect(Object.keys(checkout1.basket)[0]).to.equal('A');
+        expect(checkout1.basket.A).to.equal(1);
+    });
 });
