@@ -21,6 +21,9 @@ class Checkout {
             return acc;
         }, []).join(', ');
     }
+    getSubtotal() {
+        return `£${this.subtotal}`;
+    }
 }
 
 module.exports = Checkout;
