@@ -46,4 +46,40 @@ describe('Checkout', () => {
         expect(checkout1.basket.C).to.equal(1);
         expect(checkout1.basket.D).to.equal(1);
     });
+    it('Takes into account any discount for items', () => {
+        let basket1 = new Checkout(prices);
+        basket1.addItem('A');
+        basket1.addItem('A');
+        basket1.addItem('A');
+        expect(basket1.subtotal).to.equal(140);
+        expect(Object.keys(checkout1.basket).length).to.equal(1);
+        expect(checkout1.basket.A).to.equal(3);
+        basket1.addItem('A');
+        basket1.addItem('A');
+        basket1.addItem('A');
+        expect(basket1.subtotal).to.equal(280);
+        expect(Object.keys(checkout1.basket).length).to.equal(1);
+        expect(checkout1.basket.A).to.equal(6);
+
+        let basket2 = new Checkout(prices);
+        basket2.addItem('B');
+        basket2.addItem('B');
+        expect(basket2.subtotal).to.equal(60);
+        expect(Object.keys(checkout2.basket).length).to.equal(1);
+        expect(checkout2.basket.B).to.equal(2);
+        basket2.addItem('B');
+        basket2.addItem('B');
+        expect(basket2.subtotal).to.equal(120);
+        expect(Object.keys(checkout2.basket).length).to.equal(1);
+        expect(checkout2.basket.B).to.equal(2);
+
+        let basket3 = new Checkout(prices);
+        basket3.addItem('C');
+        basket3.addItem('C');
+        basket3.addItem('C');
+        basket3.addItem('C');
+        expect(basket3.subtotal).to.equal(100);
+        expect(Object.keys(checkout3.basket).length).to.equal(1);
+        expect(checkout3.basket.C).to.equal(4);
+    });
 });
