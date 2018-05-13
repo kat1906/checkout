@@ -9,12 +9,12 @@ class Checkout {
         else this.basket[item] = 1;
 
         this.subtotal += this.prices[item].price;
+
+        if (this.prices[item].discount) {
+            if (this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal += this.prices[item].discount;
+        }
         return this.basket;
     }
 }
 
 module.exports = Checkout;
-
-// class Checkout {
-//     constructor() {}
-// }
