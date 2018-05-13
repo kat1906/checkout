@@ -15,6 +15,12 @@ class Checkout {
         }
         return this.basket;
     }
+    viewBasket() {
+        return Object.keys(this.basket).reduce((acc, item) => {
+            acc.push(`${this.basket[item]} ${item}`);
+            return acc;
+        }, []).join(', ');
+    }
 }
 
 module.exports = Checkout;
