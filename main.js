@@ -15,8 +15,9 @@ class Checkout {
         }
         return this.basket;
     }
-    removeItem() {
-        
+    removeItem(item) {
+        this.basket[item]--;
+        this.subtotal -= this.prices[item].price;
     }
     viewBasket() {
         return Object.keys(this.basket).reduce((acc, item) => {
