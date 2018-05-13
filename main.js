@@ -9,9 +9,7 @@ class Checkout {
 
         this.subtotal += this.prices[item].price;
 
-        if (this.prices[item].discount) {
-            if (this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal += this.prices[item].discount;
-        }
+        if (this.prices[item].discount && this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal += this.prices[item].discount;
         return this.basket;
     }
     removeItem(item) {
