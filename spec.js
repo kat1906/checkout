@@ -92,4 +92,14 @@ describe('Checkout', () => {
         expect(currentBasket).to.be.a.toString('string');
         expect(currentBasket).to.equal('1 A, 1 B, 1 C, 1 D');
     });
+    it('Returns subtotal when queried', () => {
+        let checkout1 = new Checkout(prices);
+        checkout1.addItem('A');
+        checkout1.addItem('B');
+        checkout1.addItem('C');
+        checkout1.addItem('D');
+        let subtotal = checkout1.getSubtotal();
+        expect(subtotal).to.be.a('string');
+        expect(subtotal).to.equal('£122');
+    });
 });
