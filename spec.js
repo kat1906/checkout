@@ -112,5 +112,15 @@ describe('Checkout', () => {
         let subtotal = checkout1.getSubtotal();
         expect(subtotal).to.equal('£72');
         expect(checkout1.basket.A).to.equal(0);
-    })
+    });
+    it('Takes into account discount previously applied when item is removed from the basket', () => {
+        let checkout1 = new Checkout(prices);
+        checkout1.addItem('A');
+        checkout1.addItem('A');
+        checkout1.addItem('A');
+        checkout1.removeItem('A');
+        let subtotal = checkout1.getSubtotal();
+        expect(subtotal).to.equal('£100');
+        expect(checkout1.basket.A).to.equal(2);
+    });
 });
