@@ -109,7 +109,7 @@ describe('Checkout', () => {
         checkout1.addItem('C');
         checkout1.addItem('D');
         checkout1.removeItem('A');
-        let subtotal = checkout1.subtotal();
+        let subtotal = checkout1.getSubtotal();
         expect(subtotal).to.equal('£72');
         expect(checkout1.basket.A).to.equal(0);
     })
