@@ -82,45 +82,51 @@ describe('Checkout', () => {
         expect(Object.keys(checkout3.basket).length).to.equal(1);
         expect(checkout3.basket.C).to.equal(4);
     });
-    it('Shows current basket when queried', () => {
-        let checkout1 = new Checkout(prices);
-        checkout1.addItem('A');
-        checkout1.addItem('B');
-        checkout1.addItem('C');
-        checkout1.addItem('D');
-        let currentBasket = checkout1.viewBasket();
-        expect(currentBasket).to.be.a.toString('string');
-        expect(currentBasket).to.equal('1 A, 1 B, 1 C, 1 D');
+    describe('viewBasket', () => {
+        it('Shows current basket when queried', () => {
+            let checkout1 = new Checkout(prices);
+            checkout1.addItem('A');
+            checkout1.addItem('B');
+            checkout1.addItem('C');
+            checkout1.addItem('D');
+            let currentBasket = checkout1.viewBasket();
+            expect(currentBasket).to.be.a.toString('string');
+            expect(currentBasket).to.equal('1 A, 1 B, 1 C, 1 D');
+        });
     });
-    it('Returns subtotal when queried', () => {
-        let checkout1 = new Checkout(prices);
-        checkout1.addItem('A');
-        checkout1.addItem('B');
-        checkout1.addItem('C');
-        checkout1.addItem('D');
-        let subtotal = checkout1.getSubtotal();
-        expect(subtotal).to.be.a('string');
-        expect(subtotal).to.equal('£122');
+    describe('getSubtotal', () => {
+        it('Returns subtotal when queried', () => {
+            let checkout1 = new Checkout(prices);
+            checkout1.addItem('A');
+            checkout1.addItem('B');
+            checkout1.addItem('C');
+            checkout1.addItem('D');
+            let subtotal = checkout1.getSubtotal();
+            expect(subtotal).to.be.a('string');
+            expect(subtotal).to.equal('£122');
+        });
     });
-    it('Removes an item from the basket', () => {
-        let checkout1 = new Checkout(prices);
-        checkout1.addItem('A');
-        checkout1.addItem('B');
-        checkout1.addItem('C');
-        checkout1.addItem('D');
-        checkout1.removeItem('A');
-        let subtotal = checkout1.getSubtotal();
-        expect(subtotal).to.equal('£72');
-        expect(checkout1.basket.A).to.equal(0);
-    });
-    it('Takes into account discount previously applied when item is removed from the basket', () => {
-        let checkout1 = new Checkout(prices);
-        checkout1.addItem('A');
-        checkout1.addItem('A');
-        checkout1.addItem('A');
-        checkout1.removeItem('A');
-        let subtotal = checkout1.getSubtotal();
-        expect(subtotal).to.equal('£100');
-        expect(checkout1.basket.A).to.equal(2);
+    describe('removeItem', () => {
+        it('Removes an item from the basket', () => {
+            let checkout1 = new Checkout(prices);
+            checkout1.addItem('A');
+            checkout1.addItem('B');
+            checkout1.addItem('C');
+            checkout1.addItem('D');
+            checkout1.removeItem('A');
+            let subtotal = checkout1.getSubtotal();
+            expect(subtotal).to.equal('£72');
+            expect(checkout1.basket.A).to.equal(0);
+        });
+        it('Takes into account discount previously applied when item is removed from the basket', () => {
+            let checkout1 = new Checkout(prices);
+            checkout1.addItem('A');
+            checkout1.addItem('A');
+            checkout1.addItem('A');
+            checkout1.removeItem('A');
+            let subtotal = checkout1.getSubtotal();
+            expect(subtotal).to.equal('£100');
+            expect(checkout1.basket.A).to.equal(2);
+        });
     });
 });
