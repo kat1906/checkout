@@ -82,4 +82,14 @@ describe('Checkout', () => {
         expect(Object.keys(checkout3.basket).length).to.equal(1);
         expect(checkout3.basket.C).to.equal(4);
     });
+    it('Shows current basket when queried', () => {
+        let checkout1 = new Checkout(prices);
+        checkout1.addItem('A');
+        checkout1.addItem('B');
+        checkout1.addItem('C');
+        checkout1.addItem('D');
+        let currentBasket = checkout1.viewBasket();
+        expect(currentBasket).to.be.a.toString('string');
+        expect(currentBasket).to.equal('1 A, 1 B, 1 C, 1 D');
+    });
 });
