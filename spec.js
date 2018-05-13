@@ -102,4 +102,15 @@ describe('Checkout', () => {
         expect(subtotal).to.be.a('string');
         expect(subtotal).to.equal('£122');
     });
+    it('Removes an item from the basket', () => {
+        let checkout1 = new Checkout(prices);
+        checkout1.addItem('A');
+        checkout1.addItem('B');
+        checkout1.addItem('C');
+        checkout1.addItem('D');
+        checkout1.removeItem('A');
+        let subtotal = checkout1.subtotal();
+        expect(subtotal).to.equal('£72');
+        expect(checkout1.basket.A).to.equal(0);
+    })
 });
