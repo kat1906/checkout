@@ -5,20 +5,22 @@ class Checkout {
         this.subtotal = 0;
     }
     addItem(item) {
-        if (!this.prices[item]) return { error: 'This item does not have a price'};
-        const discount = this.prices[item].discount;
+        const itemPrice = this.prices[item];
+        if (!itemPrice) return { error: 'This item does not have a price'};
+        const discount = itemPrice.discount;
         this.basket[item] ? this.basket[item]++ : this.basket[item] = 1;
 
-        this.subtotal += this.prices[item].price;
+        this.subtotal += itemPrice.price;
 
-        if (discount && this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal += discount;
+        if (discount && this.basket[item] % itemPrice.discountQuantity === 0) this.subtotal += discount;
         return this.basket;
     }
     removeItem(item) {
+        const itemPrice = this.prices[item];
         if (!this.basket[item]) return { error: 'This item cannot be removed - it is not in the basket' };
-        if (this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal -= this.prices[item].discount;
+        if (this.basket[item] % itemPrice.discountQuantity === 0) this.subtotal -= itemPrice.discount;
         this.basket[item] === 1 ? delete this.basket[item] : this.basket[item]--;
-        this.subtotal -= this.prices[item].price;
+        this.subtotal -= itemPrice.price;
         return this.basket;
     }
     viewBasket() {
