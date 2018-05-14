@@ -19,10 +19,7 @@ class Checkout {
         this.subtotal -= this.prices[item].price;
     }
     viewBasket() {
-        return Object.keys(this.basket).reduce((acc, item) => {
-            acc.push(`${this.basket[item]} ${item}`);
-            return acc;
-        }, []).join(', ');
+        return this.basket;
     }
     getSubtotal() {
         return { subtotal: this.subtotal };
