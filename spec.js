@@ -104,8 +104,8 @@ describe('Checkout', () => {
             checkout1.addItem('C');
             checkout1.addItem('D');
             let subtotal = checkout1.getSubtotal();
-            expect(subtotal).to.be.a('string');
-            expect(subtotal).to.equal('£122');
+            expect(subtotal).to.be.an('object');
+            expect(subtotal).to.eql({subtotal: 122});
         });
     });
     describe('removeItem', () => {
@@ -117,7 +117,7 @@ describe('Checkout', () => {
             checkout1.addItem('D');
             checkout1.removeItem('A');
             let subtotal = checkout1.getSubtotal();
-            expect(subtotal).to.equal('£72');
+            expect(subtotal).to.eql({subtotal: 72});
             expect(checkout1.basket.A).to.equal(0);
         });
         it('Takes into account discount previously applied when item is removed from the basket', () => {
@@ -127,8 +127,9 @@ describe('Checkout', () => {
             checkout1.addItem('A');
             checkout1.removeItem('A');
             let subtotal = checkout1.getSubtotal();
-            expect(subtotal).to.equal('£100');
+            expect(subtotal).to.eql({subtotal: 100});
             expect(checkout1.basket.A).to.equal(2);
         });
+
     });
 });
