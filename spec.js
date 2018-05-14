@@ -124,6 +124,10 @@ describe('Checkout', () => {
             expect(subtotal).to.eql({subtotal: 100});
             expect(checkout1.basket).to.eql({A: 2});
         });
-
+        it('Returns error if the item is not in the basket when using removeItem', () => {
+            let checkout1 = new Checkout(prices);
+            let removeItemE = checkout1.removeItem('E');
+            expect(removeItemE).to.eql({error: 'This item cannot be removed - it is not in the basket'});
+        });
     });
 });
