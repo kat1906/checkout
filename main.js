@@ -5,7 +5,8 @@ class Checkout {
         this.subtotal = 0;
     }
     addItem(item) {
-        const discount = this.prices[item].discount;        
+        if (!this.prices[item]) return { error: 'This item does not have a price'};
+        const discount = this.prices[item].discount;
         this.basket[item] ? this.basket[item]++ : this.basket[item] = 1;
 
         this.subtotal += this.prices[item].price;
