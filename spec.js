@@ -92,8 +92,8 @@ describe('Checkout', () => {
             checkout1.addItem('C');
             checkout1.addItem('D');
             let currentBasket = checkout1.viewBasket();
-            expect(currentBasket).to.be.a.toString('string');
-            expect(currentBasket).to.equal('1 A, 1 B, 1 C, 1 D');
+            expect(currentBasket).to.be.an('object');
+            expect(currentBasket).to.eql({A: 1, B: 1, C: 1, D: 1});
         });
     });
     describe('getSubtotal', () => {
