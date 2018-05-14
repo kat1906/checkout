@@ -72,6 +72,11 @@ describe('Checkout', () => {
             expect(checkout3.subtotal).to.equal(100);
             expect(checkout3.basket).to.eql({C: 4});
         });
+        it('Returns error if the item is not in the price list', () => {
+            let checkout1 = new Checkout(prices);
+            let addItemE = checkout1.addItem('E');
+            expect(addItemE).to.eql({error: 'This item does not have a price'});
+        });
     });
     describe('viewBasket', () => {
         it('Shows current basket when queried', () => {
