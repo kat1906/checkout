@@ -15,7 +15,7 @@ class Checkout {
     }
     removeItem(item) {
         if (this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal -= this.prices[item].discount;
-        this.basket[item]--;
+        this.basket[item] === 1 ? delete this.basket[item] : this.basket[item]--;
         this.subtotal -= this.prices[item].price;
     }
     viewBasket() {
