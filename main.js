@@ -5,11 +5,12 @@ class Checkout {
         this.subtotal = 0;
     }
     addItem(item) {
+        const discount = this.prices[item].discount;        
         this.basket[item] ? this.basket[item]++ : this.basket[item] = 1;
 
         this.subtotal += this.prices[item].price;
 
-        if (this.prices[item].discount && this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal += this.prices[item].discount;
+        if (discount && this.basket[item] % this.prices[item].discountQuantity === 0) this.subtotal += discount;
         return this.basket;
     }
     removeItem(item) {
@@ -24,7 +25,7 @@ class Checkout {
         }, []).join(', ');
     }
     getSubtotal() {
-        return `£${this.subtotal}`;
+        return { subtotal: this.subtotal };
     }
 }
 
