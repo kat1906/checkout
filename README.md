@@ -1,6 +1,6 @@
 # Checkout
 
-One Paragraph of project description goes here
+A checkout system where there are four products available, each with a price per unit. Some products have a special price when bought in certain quantities e.g. 3 of product A costs 140 not 150. The items can be "scanned" via their ItemCode which adds them to the basket and it returns the basket or the subtotal when queried. Items can also be removed if no longer needed.
 
 ## Getting Started
 
