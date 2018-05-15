@@ -9,9 +9,7 @@ class Checkout {
         if (!itemPrice) return { error: 'This item does not have a price'};
         const discount = itemPrice.discount;
         this.basket[item] ? this.basket[item]++ : this.basket[item] = 1;
-
         this.subtotal += itemPrice.price;
-
         if (discount && this.basket[item] % itemPrice.discountQuantity === 0) this.subtotal += discount;
         return this.basket;
     }
