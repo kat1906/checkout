@@ -77,6 +77,11 @@ describe('Checkout', () => {
             let addItemE = checkout1.addItem('E');
             expect(addItemE).to.eql({error: 'This item does not have a price'});
         });
+        it('Returns error if no item is specified', () => {
+            let checkout1 = new Checkout(prices);
+            let addItemE = checkout1.addItem();
+            expect(addItemE).to.eql({error: 'No item specified'});
+        });
     });
     describe('viewBasket', () => {
         it('Shows current basket when queried', () => {
