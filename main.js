@@ -6,6 +6,7 @@ class Checkout {
     }
     addItem(item) {
         const itemPrice = this.prices[item];
+        if (item === undefined) return {error: 'No item specified'};
         if (!itemPrice) return { error: 'This item does not have a price'};
         const discount = itemPrice.discount;
         this.basket[item] ? this.basket[item]++ : this.basket[item] = 1;
