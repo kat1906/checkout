@@ -79,8 +79,8 @@ describe('Checkout', () => {
         });
         it('Returns error if no item is specified', () => {
             let checkout1 = new Checkout(prices);
-            let addItemE = checkout1.addItem();
-            expect(addItemE).to.eql({error: 'No item specified'});
+            let addNoItem = checkout1.addItem();
+            expect(addNoItem).to.eql({error: 'No item specified'});
         });
     });
     describe('viewBasket', () => {
@@ -133,6 +133,11 @@ describe('Checkout', () => {
             let checkout1 = new Checkout(prices);
             let removeItemE = checkout1.removeItem('E');
             expect(removeItemE).to.eql({error: 'This item cannot be removed - it is not in the basket'});
+        });
+        it('Returns error if no item is specified', () => {
+            let checkout1 = new Checkout(prices);
+            let removeNoItem = checkout1.removeItem();
+            expect(removeNoItem).to.eql({error: 'No item specified'});
         });
     });
 });
